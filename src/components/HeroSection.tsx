@@ -1,13 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-treatment.jpg";
-
 const HeroSection = () => {
-  return (
-    <section
-      id="accueil"
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden"
-    >
+  return <section id="accueil" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-hero-gradient" />
       
@@ -19,12 +14,7 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="space-y-8 animate-slide-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-sage-light rounded-full">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">
-                Cabinet d'Ostéopathie
-              </span>
-            </div>
+            
 
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">
               Retrouvez votre{" "}
@@ -68,13 +58,11 @@ const HeroSection = () => {
           </div>
 
           {/* Image */}
-          <div className="relative animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <div className="relative animate-fade-in" style={{
+          animationDelay: "0.3s"
+        }}>
             <div className="relative rounded-3xl overflow-hidden shadow-hover">
-              <img
-                src={heroImage}
-                alt="Séance d'ostéopathie"
-                className="w-full h-[500px] object-cover"
-              />
+              <img src={heroImage} alt="Séance d'ostéopathie" className="w-full h-[500px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
             </div>
             
@@ -93,8 +81,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
