@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-treatment.jpg";
+import { personalData } from "@/data/personalData";
+
 const HeroSection = () => {
   return <section id="accueil" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background */}
@@ -23,9 +25,7 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-              Anaïs Parmentier, ostéopathe diplômée, vous accompagne avec des
-              soins personnalisés pour soulager vos douleurs et améliorer votre
-              qualité de vie.
+              {personalData.hero.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -36,24 +36,18 @@ const HeroSection = () => {
                 </a>
               </Button>
               <Button variant="heroOutline" size="xl" asChild>
-                <a href="#services">Découvrir mes services</a>
+                <a href={personalData.navigation.services.href}>Découvrir mes services</a>
               </Button>
             </div>
 
             {/* Quick Info */}
             <div className="flex flex-wrap gap-6 pt-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-2 h-2 bg-primary rounded-full" />
-                <span>Consultations sur RDV</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-2 h-2 bg-primary rounded-full" />
-                <span>Tous publics</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-2 h-2 bg-primary rounded-full" />
-                <span>Urgences acceptées</span>
-              </div>
+              {personalData.hero.quickInfo.map((info, index) => (
+                <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="w-2 h-2 bg-primary rounded-full" />
+                  <span>{info}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -73,8 +67,8 @@ const HeroSection = () => {
                   <span className="text-2xl">🌿</span>
                 </div>
                 <div>
-                  <p className="font-display font-semibold text-foreground">+500</p>
-                  <p className="text-sm text-muted-foreground">Patients accompagnés</p>
+                  <p className="font-display font-semibold text-foreground">{personalData.professional.patientsCount}</p>
+                  <p className="text-sm text-muted-foreground">{personalData.professional.patientsLabel}</p>
                 </div>
               </div>
             </div>

@@ -1,5 +1,13 @@
 import { Award, GraduationCap, Heart, Sparkles } from "lucide-react";
 import portraitImage from "@/assets/osteopath-portrait.jpg";
+import { personalData } from "@/data/personalData";
+
+const iconMap = {
+  GraduationCap,
+  Award,
+  Heart,
+  Sparkles
+};
 
 const AboutSection = () => {
   return (
@@ -11,7 +19,7 @@ const AboutSection = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-card">
               <img
                 src={portraitImage}
-                alt="Anaïs Parmentier - Ostéopathe"
+                alt={`${personalData.professional.name} - Ostéopathe`}
                 className="w-full h-[600px] object-cover object-top"
               />
             </div>
@@ -19,8 +27,8 @@ const AboutSection = () => {
             {/* Experience Badge */}
             <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground rounded-2xl p-6 shadow-hover">
               <div className="text-center">
-                <p className="font-display text-3xl font-bold">5+</p>
-                <p className="text-sm opacity-90">Années d'expérience</p>
+                <p className="font-display text-3xl font-bold">{personalData.professional.experience}</p>
+                <p className="text-sm opacity-90">{personalData.professional.experienceLabel}</p>
               </div>
             </div>
 
@@ -35,56 +43,32 @@ const AboutSection = () => {
                 À propos
               </span>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mt-4 mb-6">
-                Anaïs Parmentier
+                {personalData.professional.name}
               </h2>
               <p className="text-xl text-primary font-medium mb-4">
-                Ostéopathe D.O.
+                {personalData.professional.title}
               </p>
             </div>
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Passionnée par le corps humain et ses capacités d'auto-guérison,
-                j'ai choisi l'ostéopathie pour accompagner mes patients vers un
-                mieux-être durable.
-              </p>
-              <p>
-                Diplômée d'une formation de 5 ans en ostéopathie, je pratique une
-                approche douce et globale, considérant chaque patient dans son
-                ensemble : physique, émotionnel et environnemental.
-              </p>
-              <p>
-                Mon objectif est de vous aider à retrouver votre équilibre
-                naturel et de vous accompagner sur le chemin du bien-être.
-              </p>
+              <p>{personalData.about.introduction}</p>
+              <p>{personalData.about.formation}</p>
+              <p>{personalData.about.objective}</p>
             </div>
 
             {/* Qualities */}
             <div className="grid grid-cols-2 gap-4 pt-4">
-              <div className="flex items-center gap-3 p-4 bg-sage-light/50 rounded-xl">
-                <GraduationCap className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-foreground">
-                  Diplômée D.O.
-                </span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-sage-light/50 rounded-xl">
-                <Award className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-foreground">
-                  Agréée RNCP
-                </span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-sage-light/50 rounded-xl">
-                <Heart className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-foreground">
-                  Approche douce
-                </span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-sage-light/50 rounded-xl">
-                <Sparkles className="w-5 h-5 text-primary" />
-                <span className="text-sm font-medium text-foreground">
-                  Soins personnalisés
-                </span>
-              </div>
+              {personalData.qualities.map((quality, index) => {
+                const IconComponent = iconMap[quality.icon as keyof typeof iconMap];
+                return (
+                  <div key={index} className="flex items-center gap-3 p-4 bg-sage-light/50 rounded-xl">
+                    <IconComponent className="w-5 h-5 text-primary" />
+                    <span className="text-sm font-medium text-foreground">
+                      {quality.label}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

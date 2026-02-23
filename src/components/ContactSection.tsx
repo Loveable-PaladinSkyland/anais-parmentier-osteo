@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Clock, Mail, Calendar } from "lucide-react";
+import { personalData } from "@/data/personalData";
 
 const ContactSection = () => {
   return (
@@ -35,10 +36,10 @@ const ContactSection = () => {
                   Pour prendre rendez-vous ou toute question
                 </p>
                 <a
-                  href="tel:+33600000000"
+                  href={`tel:${personalData.contact.phone}`}
                   className="text-primary font-medium hover:underline"
                 >
-                  06 00 00 00 00
+                  {personalData.contact.phoneDisplay}
                 </a>
               </div>
             </div>
@@ -56,10 +57,10 @@ const ContactSection = () => {
                   Pour toute demande d'information
                 </p>
                 <a
-                  href="mailto:contact@anais-parmentier-osteo.fr"
+                  href={`mailto:${personalData.contact.email}`}
                   className="text-primary font-medium hover:underline"
                 >
-                  contact@anais-parmentier-osteo.fr
+                  {personalData.contact.email}
                 </a>
               </div>
             </div>
@@ -74,8 +75,8 @@ const ContactSection = () => {
                   Adresse du cabinet
                 </h3>
                 <p className="text-muted-foreground">
-                  123 Rue de la Santé<br />
-                  75000 Paris
+                  {personalData.contact.address.street}<br />
+                  {personalData.contact.address.city}
                 </p>
               </div>
             </div>
@@ -90,9 +91,9 @@ const ContactSection = () => {
                   Horaires
                 </h3>
                 <div className="text-muted-foreground space-y-1">
-                  <p>Lundi - Vendredi : 9h00 - 19h00</p>
-                  <p>Samedi : 9h00 - 13h00</p>
-                  <p>Dimanche : Fermé</p>
+                  <p>Lundi - Vendredi : {personalData.practice.schedule.mondayFriday}</p>
+                  <p>Samedi : {personalData.practice.schedule.saturday}</p>
+                  <p>Dimanche : {personalData.practice.schedule.sunday}</p>
                 </div>
               </div>
             </div>
@@ -114,22 +115,16 @@ const ContactSection = () => {
             <p className="text-primary-foreground/80 leading-relaxed mb-8">
               Première consultation ou suivi, je vous accueille dans un cadre
               chaleureux pour prendre soin de vous. La consultation dure environ
-              45 minutes à 1 heure.
+              {personalData.practice.consultationDuration}.
             </p>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-primary-foreground rounded-full" />
-                <span>Première consultation : 60€</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-primary-foreground rounded-full" />
-                <span>Consultation de suivi : 55€</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-primary-foreground rounded-full" />
-                <span>Nourrisson (0-2 ans) : 55€</span>
-              </div>
+              {Object.values(personalData.practice.consultationTypes).map((consultation, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-primary-foreground rounded-full" />
+                  <span>{consultation.name} : {consultation.price}</span>
+                </div>
+              ))}
             </div>
 
             <Button
@@ -138,7 +133,7 @@ const ContactSection = () => {
               className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90"
               asChild
             >
-              <a href="tel:+33600000000">
+              <a href={`tel:${personalData.contact.phone}`}>
                 <Phone className="w-5 h-5 mr-2" />
                 Appeler pour réserver
               </a>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, MapPin, Clock } from "lucide-react";
+import { personalData } from "@/data/personalData";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,10 +35,10 @@ const Header = () => {
           {/* Logo */}
           <a href="#accueil" className="flex flex-col">
             <span className="font-display text-xl font-semibold text-foreground">
-              Anaïs Parmentier
+              {personalData.professional.name}
             </span>
             <span className="text-xs text-muted-foreground tracking-wider uppercase">
-              Ostéopathe D.O.
+              {personalData.professional.title}
             </span>
           </a>
 
